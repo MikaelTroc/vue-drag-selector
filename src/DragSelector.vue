@@ -99,6 +99,7 @@ export default {
         },
 
         handleMouseDown(e) {
+            console.log("mousedown");
             this.cancelAllSelect();
             this.$nextTick(() => {
                 this.resetPoint(e);
