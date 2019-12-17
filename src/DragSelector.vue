@@ -102,7 +102,7 @@ export default {
             console.log(this.enabled);
 
             if(this.enabled)   {
-                this.cancelAllSelect();
+                // this.cancelAllSelect();
                 this.$nextTick(() => {
                     this.resetPoint(e);
                     this.updatePointData(this.point, e);
