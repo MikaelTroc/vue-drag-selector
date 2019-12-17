@@ -24,7 +24,7 @@ export default {
     mixins: [emitter],
 
     props: {
-        disabled: false,
+        enabled: true,
         value: {
             type: Array,
             default() {
@@ -99,14 +99,17 @@ export default {
         },
 
         handleMouseDown(e) {
-            console.log("mousedown");
-            this.cancelAllSelect();
-            this.$nextTick(() => {
-                this.resetPoint(e);
-                this.updatePointData(this.point, e);
-                window.addEventListener('mouseup', this.handleMouseUp);
-                window.addEventListener('mousemove', this.handleMouseMoveThrottled);
-            });
+            console.log(this.enabled);
+
+            if(this.enabled)   {
+                this.cancelAllSelect();
+                this.$nextTick(() => {
+                    this.resetPoint(e);
+                    this.updatePointData(this.point, e);
+                    window.addEventListener('mouseup', this.handleMouseUp);
+                    window.addEventListener('mousemove', this.handleMouseMoveThrottled);
+                });
+            }
         },
 
         handleMouseMove(e) {

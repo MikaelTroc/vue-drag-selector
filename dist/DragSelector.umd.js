@@ -1469,12 +1469,12 @@ if (typeof window !== 'undefined') {
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.function.name.js
 var es6_function_name = __webpack_require__("7f7f");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules//.cache//vue-loader","cacheIdentifier":"14310da3-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/DragSelector.vue?vue&type=template&id=0d3782c8&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules//.cache//vue-loader","cacheIdentifier":"14310da3-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/DragSelector.vue?vue&type=template&id=2d45a7e4&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"drag-selector-wrapper",on:{"mousedown":_vm.handleMouseDown}},[_c('div',{staticClass:"drag-area-box",style:(_vm.selectAreaStyle)}),_vm._t("default")],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/DragSelector.vue?vue&type=template&id=0d3782c8&
+// CONCATENATED MODULE: ./src/DragSelector.vue?vue&type=template&id=2d45a7e4&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
 var web_dom_iterable = __webpack_require__("ac6a");
@@ -1559,7 +1559,7 @@ var POINT_MODEL = ['offsetX', 'offsetY', 'clientX', 'clientY'];
   name: 'drag-selector',
   mixins: [emitter],
   props: {
-    disabled: false,
+    enabled: true,
     value: {
       type: Array,
       default: function _default() {
@@ -1634,16 +1634,19 @@ var POINT_MODEL = ['offsetX', 'offsetY', 'clientX', 'clientY'];
     handleMouseDown: function handleMouseDown(e) {
       var _this2 = this;
 
-      console.log("mousedown");
-      this.cancelAllSelect();
-      this.$nextTick(function () {
-        _this2.resetPoint(e);
+      console.log(this.enabled);
 
-        _this2.updatePointData(_this2.point, e);
+      if (this.enabled) {
+        this.cancelAllSelect();
+        this.$nextTick(function () {
+          _this2.resetPoint(e);
 
-        window.addEventListener('mouseup', _this2.handleMouseUp);
-        window.addEventListener('mousemove', _this2.handleMouseMoveThrottled);
-      });
+          _this2.updatePointData(_this2.point, e);
+
+          window.addEventListener('mouseup', _this2.handleMouseUp);
+          window.addEventListener('mousemove', _this2.handleMouseMoveThrottled);
+        });
+      }
     },
     handleMouseMove: function handleMouseMove(e) {
       var _this3 = this;
