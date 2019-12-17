@@ -113,17 +113,20 @@ export default {
         },
 
         handleMouseMove(e) {
-            if (!this.dragging) {
-                this.dragging = true;
-            }
-            this.updatePointData(this.endPoint, e);
-            this.updatePointData(this.point, e);
-            this.$nextTick(() => {
-                this.childrenDOMPoints.forEach(child => {
-                    const isSelected = this.checkIfChildInSelectArea(child.point);
-                    child.instance.handleSelectChange(isSelected);
+            console.log("MouseMove:" + this.enabled);
+            if(this.enabled)   {
+                if (!this.dragging) {
+                    this.dragging = true;
+                }
+                this.updatePointData(this.endPoint, e);
+                this.updatePointData(this.point, e);
+                this.$nextTick(() => {
+                    this.childrenDOMPoints.forEach(child => {
+                        const isSelected = this.checkIfChildInSelectArea(child.point);
+                        child.instance.handleSelectChange(isSelected);
+                    });
                 });
-            });
+            }
         },
 
         cancelAllSelect() {

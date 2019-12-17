@@ -1460,12 +1460,12 @@ if (typeof window !== 'undefined') {
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.function.name.js
 var es6_function_name = __webpack_require__("7f7f");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules//.cache//vue-loader","cacheIdentifier":"14310da3-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/DragSelector.vue?vue&type=template&id=2d45a7e4&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules//.cache//vue-loader","cacheIdentifier":"14310da3-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/DragSelector.vue?vue&type=template&id=094eb947&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"drag-selector-wrapper",on:{"mousedown":_vm.handleMouseDown}},[_c('div',{staticClass:"drag-area-box",style:(_vm.selectAreaStyle)}),_vm._t("default")],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/DragSelector.vue?vue&type=template&id=2d45a7e4&
+// CONCATENATED MODULE: ./src/DragSelector.vue?vue&type=template&id=094eb947&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
 var web_dom_iterable = __webpack_require__("ac6a");
@@ -1642,19 +1642,23 @@ var POINT_MODEL = ['offsetX', 'offsetY', 'clientX', 'clientY'];
     handleMouseMove: function handleMouseMove(e) {
       var _this3 = this;
 
-      if (!this.dragging) {
-        this.dragging = true;
-      }
+      console.log("MouseMove:" + this.enabled);
 
-      this.updatePointData(this.endPoint, e);
-      this.updatePointData(this.point, e);
-      this.$nextTick(function () {
-        _this3.childrenDOMPoints.forEach(function (child) {
-          var isSelected = _this3.checkIfChildInSelectArea(child.point);
+      if (this.enabled) {
+        if (!this.dragging) {
+          this.dragging = true;
+        }
 
-          child.instance.handleSelectChange(isSelected);
+        this.updatePointData(this.endPoint, e);
+        this.updatePointData(this.point, e);
+        this.$nextTick(function () {
+          _this3.childrenDOMPoints.forEach(function (child) {
+            var isSelected = _this3.checkIfChildInSelectArea(child.point);
+
+            child.instance.handleSelectChange(isSelected);
+          });
         });
-      });
+      }
     },
     cancelAllSelect: function cancelAllSelect() {
       this.childItems.forEach(function (child) {
