@@ -24,6 +24,7 @@ export default {
     mixins: [emitter],
 
     props: {
+        disabled: false,
         value: {
             type: Array,
             default() {
