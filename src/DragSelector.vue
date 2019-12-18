@@ -69,7 +69,7 @@ export default {
 
     mounted() {
         this.handleMouseMoveThrottled = throttle(this.handleMouseMove);
-        this.emitChangeThrottled = throttle(this.emitChange, 500);
+        this.emitChangeThrottled = throttle(this.emitChange, 50);
     },
 
     methods: {
