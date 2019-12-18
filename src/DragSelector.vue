@@ -69,7 +69,7 @@ export default {
 
     mounted() {
         this.handleMouseMoveThrottled = throttle(this.handleMouseMove);
-        this.emitChangeThrottled = throttle(this.emitChange, 200);
+        this.emitChangeThrottled = throttle(this.emitChange, 100);
     },
 
     methods: {
@@ -99,7 +99,7 @@ export default {
         },
 
         handleMouseDown(e) {
-            console.log(this.enabled);
+          //  console.log(this.enabled);
 
             if(this.enabled)   {
                 // this.cancelAllSelect();
@@ -113,7 +113,7 @@ export default {
         },
 
         handleMouseMove(e) {
-            console.log("MouseMove:" + this.enabled);
+            // console.log("MouseMove:" + this.enabled);
             if(this.enabled)   {
                 if (!this.dragging) {
                     this.dragging = true;
